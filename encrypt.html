@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Encrypt Image</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <header>
+    🔐 Image Encryptor App — <a href="decrypt.html">Go to Decrypt</a>
+  </header>
+
+  <main>
+    <div class="card">
+      <h1>🔒 Encrypt Image</h1>
+      <input type="file" id="imageFile" accept="image/*">
+      <input type="password" id="encryptionKey" placeholder="Enter encryption key">
+      <button onclick="encryptImage()">Encrypt & Download</button>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2025 ImageSec by Dinuka • <a href="https://github.com">GitHub</a>
+  </footer>
+
+  <script>
+    function encryptImage() {
+      const file = document.getElementById('imageFile').files[0];
+      const key = document.getElementById('encryptionKey').value;
+
+      if (!file || !key) {
+        alert('Please select an image and enter a key.');
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = function () {
+        const data = reader.result;
+        const encrypted = btoa(xorEncrypt(data, key));
+        downloadTextFile(encrypted, "encrypted.txt");
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function xorEncrypt(data, key) {
+      return Array.from(data).map((char, i) =>
+        String.fromCharCode(char.charCodeAt(0) ^ key.charCodeAt(i % key.length))
+      ).join('');
+    }
+
+    function downloadTextFile(content, filename) {
+      const blob = new Blob([content], { type: "text/plain" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = filename;
+      link.click();
+    }
+
+    // Only Background Image Changer
+    const bgImages = ["1.png", "2.png", "3.png", "4.png"];
+    let imgIndex = 0;
+
+    function changeBackgroundImage() {
+      document.body.style.background = `url('${bgImages[imgIndex]}') no-repeat center center fixed`;
+      document.body.style.backgroundSize = "cover";
+      imgIndex = (imgIndex + 1) % bgImages.length;
+    }
+
+    changeBackgroundImage();
+    setInterval(changeBackgroundImage, 3000);
+  </script>
+</body>
+</html>

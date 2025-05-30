@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Image Decryption</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <header>
+    <h2>🔐 Image Decryption Tool</h2>
+  </header>
+
+  <main>
+    <div class="card">
+      <h1>Decrypt Your Image</h1>
+      <input type="file" id="encryptedImage" accept="image/*" />
+      <input type="password" id="password" placeholder="Enter decryption password" />
+      <button onclick="decryptImage()">Decrypt</button>
+      <div id="outputContainer">
+        <img id="outputImage" class="image-preview" src="" alt="" style="display: none;" />
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>Made with ❤️ by Dinuka Perera | 
+      <a href="https://www.linkedin.com/in/dinuka-rasanjana-perera/" target="_blank">Connect on LinkedIn</a>
+    </p>
+  </footer>
+
+  <script>
+    function decryptImage() {
+      const fileInput = document.getElementById('encryptedImage');
+      const password = document.getElementById('password').value;
+      const outputImage = document.getElementById('outputImage');
+
+      if (fileInput.files.length === 0 || !password) {
+        alert('Please select an image and enter a password.');
+        return;
+      }
+
+      const file = fileInput.files[0];
+      const reader = new FileReader();
+
+      reader.onload = function (e) {
+        // NOTE: Placeholder — actual decryption logic should go here
+        outputImage.src = e.target.result;
+        outputImage.style.display = 'block';
+      };
+
+      reader.readAsDataURL(file);
+    }
+
+    // Only Background Image Changer
+    const bgImages = ["1.png", "2.png", "3.png", "4.png"];
+    let imgIndex = 0;
+
+    function changeBackgroundImage() {
+      document.body.style.background = `url('${bgImages[imgIndex]}') no-repeat center center fixed`;
+      document.body.style.backgroundSize = "cover";
+      imgIndex = (imgIndex + 1) % bgImages.length;
+    }
+
+    changeBackgroundImage();
+    setInterval(changeBackgroundImage, 3000);
+  </script>
+</body>
+</html>
