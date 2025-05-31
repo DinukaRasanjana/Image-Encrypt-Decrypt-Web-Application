@@ -18,7 +18,7 @@ Welcome to the **Image Encryptor & Decryptor Web App** — a beautifully designe
 ## 🖼️ App Previews
 
 ### 🔓 Decryption Page
-![Image](https://github.com/user-attachments/assets/63a9d052-5225-4dca-ad31-dee8340f3824)
+![Image](https://github.com/DinukaRasanjana/Image-Encrypt-Decrypt-Web-Application/blob/dada2936b9c8f069cfba88a65281a9f48e8e8502/Screenshot%20(6).png)
 
 ---
 
