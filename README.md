@@ -51,6 +51,6 @@ Welcome to the **Image Encryptor & Decryptor Web App** — a beautifully designe
 ### 🛠️ Setup Instructions
 
 ```bash
-git clone https://github.com/IT20056384/Image-Encrypt-Decrypt-Web-Application.git
+git clone https://github.com/DinukaRasanjana/Image-Encrypt-Decrypt-Web-Application.git
 cd image-encryptor-app
 
