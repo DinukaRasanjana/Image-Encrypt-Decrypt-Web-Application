@@ -9,7 +9,9 @@
 
 <body>
   <header>
-    🔐 Image Encryptor App — <a href="decrypt.html">Go to Decrypt</a>
+    🔐 Image Encryptor App —
+    <a href="decrypt.html">Decrypt</a> |
+    
   </header>
 
   <main>
@@ -58,16 +60,13 @@
       link.click();
     }
 
-    // Only Background Image Changer
     const bgImages = ["1.png", "2.png", "3.png", "4.png"];
     let imgIndex = 0;
-
     function changeBackgroundImage() {
       document.body.style.background = `url('${bgImages[imgIndex]}') no-repeat center center fixed`;
       document.body.style.backgroundSize = "cover";
       imgIndex = (imgIndex + 1) % bgImages.length;
     }
-
     changeBackgroundImage();
     setInterval(changeBackgroundImage, 3000);
   </script>

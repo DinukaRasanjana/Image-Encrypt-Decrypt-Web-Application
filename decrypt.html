@@ -9,13 +9,15 @@
 
 <body>
   <header>
-    <h2>🔐 Image Decryption Tool</h2>
+    🔓 Image Decryptor —
+    <a href="encrypt.html">Encrypt</a> |
+  
   </header>
 
   <main>
     <div class="card">
       <h1>Decrypt Your Image</h1>
-      <input type="file" id="encryptedImage" accept="image/*" />
+      <input type="file" id="encryptedImage" accept=".txt" />
       <input type="password" id="password" placeholder="Enter decryption password" />
       <button onclick="decryptImage()">Decrypt</button>
       <div id="outputContainer">
@@ -26,7 +28,7 @@
 
   <footer>
     <p>Made with ❤️ by Dinuka Perera | 
-      <a href="https://www.linkedin.com/in/dinuka-rasanjana-perera/" target="_blank">Connect on LinkedIn</a>
+      <a href="https://www.linkedin.com/in/dinuka-rasanjana-perera/" target="_blank">LinkedIn</a>
     </p>
   </footer>
 
@@ -37,7 +39,7 @@
       const outputImage = document.getElementById('outputImage');
 
       if (fileInput.files.length === 0 || !password) {
-        alert('Please select an image and enter a password.');
+        alert('Please select the encrypted file and enter the password.');
         return;
       }
 
@@ -45,24 +47,33 @@
       const reader = new FileReader();
 
       reader.onload = function (e) {
-        // NOTE: Placeholder — actual decryption logic should go here
-        outputImage.src = e.target.result;
-        outputImage.style.display = 'block';
+        const encryptedText = e.target.result;
+        try {
+          const decoded = atob(encryptedText);
+          const decrypted = xorEncrypt(decoded, password);
+          outputImage.src = decrypted;
+          outputImage.style.display = 'block';
+        } catch (err) {
+          alert("Decryption failed. Check the password or file.");
+        }
       };
 
-      reader.readAsDataURL(file);
+      reader.readAsText(file);
     }
 
-    // Only Background Image Changer
+    function xorEncrypt(data, key) {
+      return Array.from(data).map((char, i) =>
+        String.fromCharCode(char.charCodeAt(0) ^ key.charCodeAt(i % key.length))
+      ).join('');
+    }
+
     const bgImages = ["1.png", "2.png", "3.png", "4.png"];
     let imgIndex = 0;
-
     function changeBackgroundImage() {
       document.body.style.background = `url('${bgImages[imgIndex]}') no-repeat center center fixed`;
       document.body.style.backgroundSize = "cover";
       imgIndex = (imgIndex + 1) % bgImages.length;
     }
-
     changeBackgroundImage();
     setInterval(changeBackgroundImage, 3000);
   </script>
