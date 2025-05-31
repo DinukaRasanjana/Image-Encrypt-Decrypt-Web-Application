@@ -3,7 +3,7 @@
 Welcome to the **Image Encryptor & Decryptor Web App** — a beautifully designed, front-end only tool to **secure your images using XOR encryption** in your browser. Built with vanilla HTML, CSS, and JavaScript, this project is ideal for learners, privacy enthusiasts, and anyone curious about lightweight cryptography in web development.
 
 ## Encryptor Preview
-![Image](https://github.com/user-attachments/assets/1.png)
+![Image](https://github.com/DinukaRasanjana/Image-Encrypt-Decrypt-Web-Application/blob/fb62bb2101a59e4a6bc7acca902a8d3f9fe5e607/Screenshot%20(5).png)
 ![Encryption Page Preview](assets/1.png)
 
 ## ✨ Features
